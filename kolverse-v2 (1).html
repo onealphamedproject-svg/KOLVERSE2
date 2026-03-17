@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOLverse — Where Industry Meets Expertise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & VARIABLES
+============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2A;
+  --navy-mid:#162436;
+  --navy-light:#1e3552;
+  --cream:#F5F3EF;
+  --cream-dark:#EDE9E3;
+  --blush:#E8D5CC;
+  --blush-dark:#d4bfb5;
+  --white:#FFFFFF;
+  --muted:#A0AEC0;
+  --dark:#1A202C;
+  --mid:#4A5568;
+  --light-mid:#718096;
+  --shadow-xs:0 2px 8px rgba(0,0,0,0.06);
+  --shadow-sm:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-md:0 8px 36px rgba(0,0,0,0.13);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.18);
+  --shadow-xl:0 32px 80px rgba(0,0,0,0.24);
+  --r:12px;
+  --r-lg:20px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Montserrat',sans-serif;font-size:16px;line-height:1.7;color:var(--dark);background:var(--navy);overflow-x:hidden}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none}
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.75s var(--ease),transform 0.75s var(--ease)}
+.reveal.up{transform:translateY(36px)}
+.reveal.left{transform:translateX(-36px)}
+.reveal.right{transform:translateX(36px)}
+.reveal.visible{opacity:1;transform:translate(0)}
+.d1{transition-delay:0.08s}.d2{transition-delay:0.18s}.d3{transition-delay:0.28s}.d4{transition-delay:0.38s}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+============================================================ */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--blush);margin-bottom:18px}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:currentColor;flex-shrink:0}
+.eyebrow-dark{color:var(--mid)}
+.eyebrow-dark::before{background:var(--mid)}
+
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:4px;cursor:pointer;border:none;transition:all 0.3s var(--ease);white-space:nowrap}
+.btn-blush{background:var(--blush);color:var(--navy)}
+.btn-blush:hover{background:var(--blush-dark);transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,213,204,0.4)}
+.btn-outline-white{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.5)}
+.btn-outline-white:hover{border-color:var(--white);background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--navy-mid);transform:translateY(-2px);box-shadow:0 10px 30px rgba(13,27,42,0.35)}
+.btn-outline-navy{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-outline-navy:hover{background:var(--navy);color:var(--white);transform:translateY(-2px)}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+nav{position:sticky;top:0;z-index:1000;height:66px;display:flex;align-items:center;padding:0 48px;background:rgba(13,27,42,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.05);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.4)}
+.nav-logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-logo-box{width:36px;height:36px;background:linear-gradient(135deg,var(--blush),#c9a898);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:var(--navy);flex-shrink:0}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);letter-spacing:0.3px}
+.nav-links{flex:1;display:flex;justify-content:center;gap:36px;list-style:none}
+.nav-links a{font-size:12.5px;font-weight:500;letter-spacing:0.5px;color:rgba(255,255,255,0.72);position:relative;transition:color 0.25s}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--blush);transition:width 0.3s var(--ease);border-radius:2px}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.nav-login{font-size:12.5px;font-weight:500;color:rgba(255,255,255,0.72);transition:color 0.25s}
+.nav-login:hover{color:var(--white)}
+.nav-contact{padding:9px 22px;border:1.5px solid rgba(255,255,255,0.45);color:var(--white);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;border-radius:4px;transition:all 0.25s}
+.nav-contact:hover{border-color:var(--white);background:rgba(255,255,255,0.1)}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{position:relative;min-height:calc(100vh - 66px);background:var(--navy);overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.18;filter:saturate(0.4)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,27,42,0.97) 40%,rgba(13,27,42,0.55) 100%)}
+.hero-noise{position:absolute;inset:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px;z-index:1}
+.hero-glow{position:absolute;top:-20%;right:-5%;width:700px;height:700px;background:radial-gradient(circle,rgba(232,213,204,0.07) 0%,transparent 65%);z-index:1;pointer-events:none}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1180px;margin:0 auto;padding:80px 48px}
+.hero-content{}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,213,204,0.1);border:1px solid rgba(232,213,204,0.2);padding:7px 16px;border-radius:50px;font-size:10.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blush);margin-bottom:28px}
+.hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--blush);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero h1{font-size:66px;font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-1px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--blush)}
+.hero-sub{font-size:16.5px;color:var(--muted);max-width:500px;margin-bottom:44px;line-height:1.85;font-weight:400}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.hero-trust{display:flex;align-items:center;gap:16px}
+.hero-trust-faces{display:flex}
+.hero-trust-face{width:36px;height:36px;border-radius:50%;border:2px solid var(--navy);overflow:hidden;margin-left:-10px;flex-shrink:0}
+.hero-trust-face:first-child{margin-left:0}
+.hero-trust-face img{width:100%;height:100%;object-fit:cover}
+.hero-trust-text{font-size:12px;color:var(--muted);line-height:1.5}
+.hero-trust-text strong{display:block;font-weight:600;color:rgba(255,255,255,0.85);font-size:13px}
+
+/* Hero right: stacked cards */
+.hero-right{display:flex;flex-direction:column;gap:16px}
+.hero-card-lg{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px)}
+.hero-card-img{height:220px;position:relative;overflow:hidden}
+.hero-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.hero-card-lg:hover .hero-card-img img{transform:scale(1.06)}
+.hero-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,0.85) 0%,transparent 60%)}
+.hero-card-img-tag{position:absolute;top:16px;left:16px;background:rgba(232,213,204,0.92);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+.hero-card-body{padding:20px 22px}
+.hero-card-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:3px}
+.hero-card-role{font-size:11px;color:var(--muted);letter-spacing:0.5px;margin-bottom:14px}
+.hero-card-stats{display:flex;gap:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07)}
+.hero-cs-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white)}
+.hero-cs-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:1px}
+
+.hero-cards-sm{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-card-sm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;position:relative}
+.hero-card-sm-img{height:110px;overflow:hidden}
+.hero-card-sm-img img{transition:transform 6s ease}
+.hero-card-sm:hover .hero-card-sm-img img{transform:scale(1.08)}
+.hero-card-sm-body{padding:12px 14px}
+.hero-card-sm-name{font-weight:700;font-size:12.5px;color:var(--white);margin-bottom:2px}
+.hero-card-sm-spec{font-size:11px;color:var(--muted)}
+.hero-live{position:absolute;top:10px;right:10px;background:rgba(16,185,129,0.9);color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:20px;display:flex;align-items:center;gap:4px}
+.hero-live::before{content:'';width:5px;height:5px;border-radius:50%;background:#fff;animation:pulse 1.5s infinite}
+
+/* ============================================================
+   STATS STRIP
+============================================================ */
+.stats{background:var(--cream);padding:0}
+.stats-inner{max-width:1180px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:52px 32px;border-right:1px solid rgba(26,32,44,0.09);text-align:center;position:relative;overflow:hidden;transition:background 0.3s}
+.stat:last-child{border-right:none}
+.stat:hover{background:var(--cream-dark)}
+.stat-num{font-family:'Playfair Display',serif;font-size:54px;font-weight:800;color:var(--navy);line-height:1;display:block;margin-bottom:10px}
+.stat-lbl{font-size:10.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mid)}
+
+/* ============================================================
+   SECTION WRAPPERS
+============================================================ */
+.s-dark{background:var(--navy);padding:104px 0}
+.s-light{background:var(--cream);padding:104px 0}
+.s-white{background:var(--white);padding:104px 0}
+.container{max-width:1180px;margin:0 auto;padding:0 48px}
+
+/* ============================================================
+   ABOUT SECTION
+============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-photo-wrap{position:relative}
+.about-photo-main{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;position:relative}
+.about-photo-main img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease}
+.about-photo-main:hover img{transform:scale(1.04)}
+.about-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,27,42,0.7) 100%)}
+.about-photo-float{position:absolute;bottom:-28px;right:-28px;width:200px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-xl);border:3px solid var(--white)}
+.about-photo-float img{height:130px;object-fit:cover}
+.about-stat-badge{position:absolute;top:32px;left:-24px;background:var(--blush);border-radius:var(--r);padding:22px 26px;box-shadow:var(--shadow-lg);text-align:center;z-index:2}
+.about-stat-badge-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;color:var(--navy);display:block;line-height:1}
+.about-stat-badge-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(13,27,42,0.6);margin-top:5px;display:block}
+.about-content h2{font-size:44px;font-weight:700;color:var(--white);line-height:1.18;margin-bottom:24px}
+.about-content p{color:var(--muted);margin-bottom:18px;font-size:15.5px;line-height:1.85}
+.link-cta{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blush);margin-top:14px;transition:gap 0.3s}
+.link-cta:hover{gap:16px}
+.link-cta svg{transition:transform 0.3s}
+.link-cta:hover svg{transform:translateX(4px)}
+
+/* ============================================================
+   WHY KOLVERSE — 4 CARDS
+============================================================ */
+.section-head{text-align:center;max-width:600px;margin:0 auto 64px}
+.section-head h2{font-size:44px;font-weight:700;color:var(--dark);line-height:1.2;margin-bottom:14px}
+.section-head p{color:var(--mid);font-size:15.5px}
+.section-head-dark h2{color:var(--white)}
+.section-head-dark p{color:var(--muted)}
+
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{background:var(--white);border-radius:var(--r);padding:36px 28px 32px;box-shadow:var(--shadow-xs);border:1px solid rgba(26,32,44,0.04);transition:all 0.35s var(--ease);cursor:default;position:relative;overflow:hidden}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blush),var(--navy));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.why-card:hover::after{transform:scaleX(1)}
+.why-icon{width:54px;height:54px;background:var(--cream);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:22px;transition:transform 0.3s}
+.why-card:hover .why-icon{transform:scale(1.1) rotate(-3deg)}
+.why-card h3{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.why-card p{font-size:13.5px;color:var(--mid);line-height:1.75;margin-bottom:22px}
+.card-cta{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);display:inline-flex;align-items:center;gap:6px;transition:gap 0.25s}
+.card-cta:hover{gap:10px}
+
+/* ============================================================
+   HOW IT WORKS
+============================================================ */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.step{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r);padding:52px 40px;position:relative;overflow:hidden;transition:all 0.35s var(--ease)}
+.step::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,213,204,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.3s}
+.step:hover{background:rgba(255,255,255,0.05);transform:translateY(-5px)}
+.step:hover::before{opacity:1}
+.step-num{font-family:'Playfair Display',serif;font-size:96px;font-weight:800;color:rgba(255,255,255,0.05);line-height:1;position:absolute;top:12px;right:20px;transition:color 0.3s}
+.step:hover .step-num{color:rgba(232,213,204,0.08)}
+.step-img{height:160px;border-radius:10px;overflow:hidden;margin-bottom:26px}
+.step-img img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.step:hover .step-img img{transform:scale(1.06)}
+.step-label{display:block;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blush);margin-bottom:14px}
+.step h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3}
+.step p{font-size:13.5px;color:var(--muted);line-height:1.8}
+
+/* ============================================================
+   INSIGHTS
+============================================================ */
+.insights-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:24px}
+.insights-header h2{font-size:44px;font-weight:700;color:var(--dark);line-height:1.2;margin-bottom:10px}
+.insights-header p{color:var(--mid);font-size:15px;max-width:480px}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.insight-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-xs);border:1px solid rgba(26,32,44,0.06);transition:all 0.35s var(--ease)}
+.insight-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.insight-img{height:200px;overflow:hidden;position:relative}
+.insight-img img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.insight-card:hover .insight-img img{transform:scale(1.06)}
+.insight-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(13,27,42,0.6) 100%)}
+.insight-body{padding:28px 24px 26px}
+.insight-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+.t-ind{background:rgba(13,27,42,0.07);color:var(--navy)}
+.t-exp{background:rgba(232,213,204,0.5);color:#7a4e42}
+.t-case{background:rgba(16,185,129,0.1);color:#065f46}
+.insight-card h3{font-family:'Playfair Display',serif;font-size:17.5px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.38}
+.insight-card p{font-size:13px;color:var(--mid);line-height:1.7}
+.insight-footer{display:flex;align-items:center;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(26,32,44,0.07)}
+.insight-author-img{width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.insight-author-name{font-size:12px;font-weight:600;color:var(--dark)}
+.insight-author-role{font-size:11px;color:var(--mid)}
+
+/* ============================================================
+   FEATURED EXPERT
+============================================================ */
+.featured-outer{position:relative;overflow:hidden}
+.featured-bg-img{position:absolute;inset:0;z-index:0}
+.featured-bg-img img{width:100%;height:100%;object-fit:cover;opacity:0.07;filter:saturate(0)}
+.featured-bg-img::after{content:'';position:absolute;inset:0;background:var(--navy);opacity:0.94}
+.featured-grid{position:relative;z-index:1;display:grid;grid-template-columns:400px 1fr;gap:80px;align-items:center}
+.featured-photo{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;position:relative;box-shadow:var(--shadow-xl)}
+.featured-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 8s ease}
+.featured-photo:hover img{transform:scale(1.04)}
+.featured-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,0.8) 0%,transparent 50%)}
+.featured-photo-badge{position:absolute;bottom:24px;left:24px;background:var(--blush);padding:8px 18px;border-radius:6px;font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);z-index:1}
+.featured-content h2{font-family:'Playfair Display',serif;font-size:54px;font-weight:800;color:var(--white);line-height:1.08;margin-bottom:6px}
+.featured-title{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
+.featured-quote{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--blush);line-height:1.65;margin-bottom:26px;padding:0 0 0 24px;border-left:3px solid rgba(232,213,204,0.3)}
+.featured-bio{font-size:14.5px;color:var(--muted);line-height:1.9;margin-bottom:36px;max-width:520px}
+.featured-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.soc-btn{width:42px;height:42px;border:1.5px solid rgba(255,255,255,0.18);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:all 0.25s}
+.soc-btn:hover{border-color:var(--blush);color:var(--blush);transform:translateY(-2px)}
+
+/* ============================================================
+   GLOBAL DIRECTORY
+============================================================ */
+.dir-head{text-align:center;margin-bottom:48px}
+.dir-head h2{font-family:'Montserrat',sans-serif;font-size:44px;font-weight:800;color:var(--dark);margin-bottom:32px}
+.search-wrap{max-width:640px;margin:0 auto 24px;display:flex;background:var(--white);border:2px solid rgba(26,32,44,0.1);border-radius:50px;overflow:hidden;box-shadow:var(--shadow-sm);transition:border-color 0.3s,box-shadow 0.3s}
+.search-wrap:focus-within{border-color:var(--navy);box-shadow:var(--shadow-md)}
+.search-input{flex:1;padding:16px 26px;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--dark);background:transparent}
+.search-input::placeholder{color:#aab0bc}
+.search-btn{margin:5px;padding:12px 28px;background:var(--navy);color:var(--white);border:none;border-radius:50px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background 0.25s}
+.search-btn:hover{background:var(--navy-light)}
+.tag-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pill{padding:9px 22px;background:rgba(13,27,42,0.06);color:var(--dark);font-size:12.5px;font-weight:600;border-radius:50px;cursor:pointer;border:1.5px solid transparent;transition:all 0.25s;user-select:none}
+.pill:hover,.pill.active{background:var(--navy);color:var(--white)}
+
+/* KOL scroll */
+.kol-scroll{margin-top:48px;overflow-x:auto;cursor:grab;-webkit-overflow-scrolling:touch;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:rgba(13,27,42,0.15) transparent}
+.kol-scroll::-webkit-scrollbar{height:4px}
+.kol-scroll::-webkit-scrollbar-track{background:transparent}
+.kol-scroll::-webkit-scrollbar-thumb{background:rgba(13,27,42,0.15);border-radius:4px}
+.kol-scroll:active{cursor:grabbing}
+.kol-track{display:flex;gap:20px;padding:4px 0;width:max-content}
+.kol-card{width:224px;background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-xs);border:1px solid rgba(26,32,44,0.06);flex-shrink:0;transition:all 0.3s var(--ease);cursor:pointer}
+.kol-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.kol-card-img{height:130px;overflow:hidden;position:relative}
+.kol-card-img img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 5s ease}
+.kol-card:hover .kol-card-img img{transform:scale(1.08)}
+.kol-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(13,27,42,0.55) 100%)}
+.kol-body{padding:16px 16px 18px}
+.kol-name{font-weight:700;font-size:13.5px;color:var(--dark);margin-bottom:3px}
+.kol-spec{font-size:12px;color:var(--mid);margin-bottom:10px}
+.kol-exp{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.5px;padding:3px 10px;border-radius:20px;margin-bottom:9px}
+.eb{background:rgba(45,106,159,0.1);color:#1a5285}
+.er{background:rgba(139,74,94,0.1);color:#7a2d45}
+.et{background:rgba(74,122,110,0.1);color:#2d6e5e}
+.ea{background:rgba(146,107,50,0.1);color:#7a5a1a}
+.ep{background:rgba(90,74,139,0.1);color:#4a2d8b}
+.kol-loc{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px}
+
+/* Content cards */
+.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.cc{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-xs);border:1px solid rgba(26,32,44,0.06);transition:all 0.3s var(--ease)}
+.cc:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.cc-img{height:150px;overflow:hidden;position:relative}
+.cc-img img{width:100%;height:100%;object-fit:cover;transition:transform 5s ease}
+.cc:hover .cc-img img{transform:scale(1.08)}
+.cc-body{padding:22px 20px}
+.cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.cc-pill{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:5px 11px;border-radius:20px}
+.p-teal{background:rgba(20,184,166,0.12);color:#0f766e}
+.p-purple{background:rgba(124,58,237,0.12);color:#7c3aed}
+.p-navy{background:rgba(13,27,42,0.09);color:var(--navy)}
+.cc-source{font-size:11px;color:var(--muted);font-weight:500}
+.cc h4{font-family:'Playfair Display',serif;font-size:15.5px;font-weight:700;color:var(--dark);line-height:1.45;margin-bottom:0}
+.cc-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid rgba(26,32,44,0.07);font-size:11.5px;color:var(--mid)}
+.cc-footer strong{font-weight:700;color:var(--navy)}
+
+/* ============================================================
+   CTA BANNER
+============================================================ */
+.cta-section{background:var(--cream);padding:104px 0}
+.cta-inner{background:var(--navy);border-radius:20px;padding:80px 64px;text-align:center;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8D5CC' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");background-size:60px 60px}
+.cta-glow{position:absolute;top:-60%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(232,213,204,0.1) 0%,transparent 70%);pointer-events:none}
+.cta-inner>*{position:relative;z-index:1}
+.cta-micro{font-size:10px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);margin-top:28px;display:block}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:50px;font-weight:700;color:var(--white);line-height:1.18;margin-bottom:18px}
+.cta-inner p{color:var(--muted);font-size:16px;max-width:540px;margin:0 auto 44px;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.05)}
+.footer-inner{max-width:1180px;margin:0 auto;padding:0 48px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding:72px 0 56px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.footer-brand .logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.8;max-width:280px;margin-bottom:26px}
+.footer-socials{display:flex;gap:10px}
+.footer-col h4{font-size:10.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);margin-bottom:22px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:13.5px;color:var(--muted);transition:color 0.25s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px}
+.footer-bottom a{color:var(--muted);transition:color 0.25s}
+.footer-bottom a:hover{color:var(--white)}
+.back-top{font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blush);cursor:pointer;transition:opacity 0.25s}
+.back-top:hover{opacity:0.7}
+.footer-disclaimer{text-align:center;padding:16px 48px;font-size:11px;font-style:italic;color:rgba(160,174,192,0.45);border-top:1px solid rgba(255,255,255,0.04)}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:0;padding:80px 32px 60px}
+  .hero-right{display:none}
+  .about-grid{grid-template-columns:1fr;gap:56px}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .featured-grid{grid-template-columns:1fr;gap:48px}
+  .featured-photo{aspect-ratio:16/9;max-height:320px}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .container,.hero-grid,.footer-inner{padding-left:24px;padding-right:24px}
+  .s-dark,.s-light,.s-white,.cta-section{padding:72px 0}
+  .hero h1{font-size:42px}
+  .stats-inner{grid-template-columns:1fr 1fr;padding:0 24px}
+  .stat{border-bottom:1px solid rgba(26,32,44,0.09)}
+  .stat:nth-child(odd){border-right:1px solid rgba(26,32,44,0.09)}
+  .stat:nth-child(even){border-right:none}
+  .how-grid,.insights-grid,.content-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;padding:48px 0 40px}
+  .cta-inner{padding:48px 28px}
+  .cta-inner h2{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-box">K</div>
+    <span class="nav-logo-text">KOLverse</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#pharma">For Pharma</a></li>
+    <li><a href="#kols">For KOLs</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="nav-login">Log In</a>
+    <a href="#" class="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero">
+  <div class="hero-bg">
+    <!-- Medical research / lab collaboration photo -->
+    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80&fit=crop" alt="Medical professionals collaborating">
+  </div>
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-grid">
+    <!-- LEFT -->
+    <div class="hero-content">
+      <div class="hero-tag reveal"><span></span>Powered by OneAlphaMed</div>
+      <h1 class="reveal d1">Where <em>Industry</em><br>Meets Expertise</h1>
+      <p class="hero-sub reveal d2">Discover and connect with leading medical thought leaders across 30+ specialties — all on one trusted global platform.</p>
+      <div class="hero-btns reveal d3">
+        <a href="#" class="btn btn-blush">Explore Experts →</a>
+        <a href="#" class="btn btn-outline-white">Join as a KOL</a>
+      </div>
+      <div class="hero-trust reveal d4">
+        <div class="hero-trust-faces">
+          <div class="hero-trust-face"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face" alt="KOL"></div>
+          <div class="hero-trust-face"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=80&h=80&fit=crop&crop=face" alt="KOL"></div>
+          <div class="hero-trust-face"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face" alt="KOL"></div>
+          <div class="hero-trust-face"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=80&h=80&fit=crop&crop=face" alt="KOL"></div>
+        </div>
+        <div class="hero-trust-text">
+          <strong>1,000+ Verified KOLs</strong>
+          trusted by global pharma teams
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: Stacked profile cards -->
+    <div class="hero-right reveal d2">
+      <div class="hero-card-lg">
+        <div class="hero-card-img">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=300&fit=crop&crop=top" alt="Dr. Elena Rodriguez">
+          <div class="hero-card-img-overlay"></div>
+          <span class="hero-card-img-tag">Featured KOL</span>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-card-name">Dr. Elena Rodriguez</div>
+          <div class="hero-card-role">Chief of Oncology · Global Health Institute</div>
+          <div class="hero-card-stats">
+            <div><div class="hero-cs-num">342</div><div class="hero-cs-lbl">Citations</div></div>
+            <div><div class="hero-cs-num">20+</div><div class="hero-cs-lbl">Yrs Exp</div></div>
+            <div><div class="hero-cs-num">18</div><div class="hero-cs-lbl">Trials</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-cards-sm">
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-img"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=160&fit=crop&crop=top" alt="Dr. Marcus Thorne"></div>
+          <div class="hero-card-sm-body">
+            <div class="hero-card-sm-name">Dr. Marcus Thorne</div>
+            <div class="hero-card-sm-spec">Cardiology · Boston</div>
+          </div>
+          <span class="hero-live">Active</span>
+        </div>
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=160&fit=crop&crop=top" alt="Dr. Sarah Chen"></div>
+          <div class="hero-card-sm-body">
+            <div class="hero-card-sm-name">Dr. Sarah Chen</div>
+            <div class="hero-card-sm-spec">Immunology · Boston</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS STRIP
+============================================================ -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat reveal"><span class="stat-num" data-target="1000" data-suffix="+">1000+</span><span class="stat-lbl">Verified KOLs</span></div>
+    <div class="stat reveal d1"><span class="stat-num" data-target="30" data-suffix="+">30+</span><span class="stat-lbl">Specialties</span></div>
+    <div class="stat reveal d2"><span class="stat-num" data-word="Worldwide">Worldwide</span><span class="stat-lbl">Global Access</span></div>
+    <div class="stat reveal d3"><span class="stat-num" data-word="Real-time">Real-time</span><span class="stat-lbl">Data-Driven Insights</span></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     GLOBAL DIRECTORY
+============================================================ -->
+<section class="s-white" id="kols">
+  <div class="container">
+    <div class="dir-head reveal">
+      <h2>Search the Global Directory</h2>
+      <div class="search-wrap">
+        <input class="search-input" type="text" placeholder="Therapy area, name, geography...">
+        <button class="search-btn">Search</button>
+      </div>
+      <div class="tag-pills">
+        <span class="pill active">Oncology</span>
+        <span class="pill">Cardiology</span>
+        <span class="pill">Rare Disease</span>
+        <span class="pill">Neurology</span>
+      </div>
+    </div>
+
+    <!-- KOL Horizontal Scroll -->
+    <div class="kol-scroll reveal" id="kol-scroll">
+      <div class="kol-track">
+        <!-- Card 1 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=280&h=180&fit=crop&crop=top" alt="Dr. Marcus Thorne">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Marcus Thorne</div>
+            <div class="kol-spec">Cardiology</div>
+            <span class="kol-exp eb">20+ Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Boston, US</div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=280&h=180&fit=crop&crop=top" alt="Dr. Elena Rostova">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Elena Rostova</div>
+            <div class="kol-spec">Oncology</div>
+            <span class="kol-exp er">15 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Berlin, DE</div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=280&h=180&fit=crop&crop=top" alt="Dr. Ahmed Al-Fayed">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Ahmed Al-Fayed</div>
+            <div class="kol-spec">Neurology</div>
+            <span class="kol-exp et">18 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Dubai, UAE</div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=280&h=180&fit=crop&crop=top" alt="Dr. James Wilson">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. James Wilson</div>
+            <div class="kol-spec">Rare Diseases</div>
+            <span class="kol-exp ea">10 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Toronto, CA</div>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=280&h=180&fit=crop&crop=top" alt="Dr. Sarah Chen">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Sarah Chen</div>
+            <div class="kol-spec">Immunology</div>
+            <span class="kol-exp ep">12 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Boston, US</div>
+          </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=280&h=180&fit=crop&crop=top" alt="Dr. Priya Nair">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Priya Nair</div>
+            <div class="kol-spec">Endocrinology</div>
+            <span class="kol-exp et">14 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Mumbai, IN</div>
+          </div>
+        </div>
+        <!-- Card 7 -->
+        <div class="kol-card">
+          <div class="kol-card-img">
+            <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?w=280&h=180&fit=crop&crop=top" alt="Dr. Hans Mueller">
+            <div class="kol-card-img-overlay"></div>
+          </div>
+          <div class="kol-body">
+            <div class="kol-name">Dr. Hans Mueller</div>
+            <div class="kol-spec">Hematology</div>
+            <span class="kol-exp eb">22 Yrs Exp</span>
+            <div class="kol-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Munich, DE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Cards -->
+    <div class="content-grid">
+      <div class="cc reveal">
+        <div class="cc-img">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=200&fit=crop" alt="Cardiology insight">
+        </div>
+        <div class="cc-body">
+          <div class="cc-top">
+            <span class="cc-pill p-teal">DOL Insight</span>
+            <span class="cc-source">LinkedIn / X</span>
+          </div>
+          <h4>"The silent crisis in preventative cardiology — A Thread"</h4>
+          <div class="cc-footer">
+            <span>Dr. Marcus Thorne</span>
+            <strong>12.4k Engagements</strong>
+          </div>
+        </div>
+      </div>
+      <div class="cc reveal d1">
+        <div class="cc-img">
+          <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=500&h=200&fit=crop" alt="Clinical trial autoimmune">
+        </div>
+        <div class="cc-body">
+          <div class="cc-top">
+            <span class="cc-pill p-purple">Clinical Trial</span>
+            <span class="cc-source" style="color:#7c3aed;font-weight:600">Active</span>
+          </div>
+          <h4>"Lead Investigator: Autoimmune Modulators"</h4>
+          <div class="cc-footer">
+            <span>Dr. Sarah Chen</span>
+            <strong>400+ Enrolled</strong>
+          </div>
+        </div>
+      </div>
+      <div class="cc reveal d2">
+        <div class="cc-img">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&h=200&fit=crop" alt="Immunotherapy publication">
+        </div>
+        <div class="cc-body">
+          <div class="cc-top">
+            <span class="cc-pill p-navy">KOL Publication</span>
+            <span class="cc-source">NEJM</span>
+          </div>
+          <h4>"Phase 3 Efficacy of Novel Immunotherapy in NSCLC"</h4>
+          <div class="cc-footer">
+            <span>Dr. Elena Rostova</span>
+            <strong>342 Citations</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section class="s-dark" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal left">
+        <div class="about-photo-main">
+          <!-- Medical team discussion / pharma collaboration -->
+          <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80&fit=crop" alt="Medical team collaboration">
+          <div class="about-photo-overlay"></div>
+        </div>
+        <div class="about-photo-float">
+          <!-- Data/analytics dashboard -->
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80&fit=crop" alt="Data insights">
+        </div>
+        <div class="about-stat-badge">
+          <span class="about-stat-badge-num">30+</span>
+          <span class="about-stat-badge-lbl">Specialties</span>
+        </div>
+      </div>
+      <div class="about-content reveal right d2">
+        <span class="eyebrow">The Experts on Expertise</span>
+        <h2>Redefining How Pharma Connects with Experts</h2>
+        <p>KOLverse simplifies one of pharma's most complex challenges — identifying and engaging the right medical experts. Through verified profiles, smart filters, and structured workflows, it bridges science and strategy — enabling meaningful, insight-driven collaborations.</p>
+        <p>We help global brand teams foster partnerships built on data transparency and trust.</p>
+        <a href="#" class="link-cta">
+          Learn More About Our Mission
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY KOLVERSE — 4 CARDS
+============================================================ -->
+<section class="s-light" id="pharma">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-dark">Why KOLverse</span>
+      <h2>Empowering Brand Teams Worldwide</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🛡️</div>
+        <h3>Verified Experts</h3>
+        <p>Every profile validated via credentials, research, and affiliations to ensure absolute credibility.</p>
+        <a href="#" class="card-cta">Explore More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-icon">🔍</div>
+        <h3>Smart Discovery</h3>
+        <p>Precision filters across specialties, geography, and publication metrics for targeted identification.</p>
+        <a href="#" class="card-cta">Explore More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-icon">⚡</div>
+        <h3>Faster Collaboration</h3>
+        <p>End-to-end, compliant workflow management for seamless engagement and reduced lead times.</p>
+        <a href="#" class="card-cta">Explore More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="why-icon">🌐</div>
+        <h3>Global Scale</h3>
+        <p>Access experts across continents and emerging markets through our unified digital destination.</p>
+        <a href="#" class="card-cta">Explore More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW IT WORKS
+============================================================ -->
+<section class="s-dark" id="how-it-works">
+  <div class="container">
+    <div class="section-head section-head-dark reveal" style="margin-bottom:64px">
+      <span class="eyebrow">The Process</span>
+      <h2>From Discovery to Engagement — Made Simple</h2>
+      <p style="color:var(--muted);margin-bottom:32px">Our structured workflow ensures transparent, compliant, and streamlined scientific partnerships.</p>
+      <a href="#" class="btn btn-blush">Start Exploring</a>
+    </div>
+    <div class="how-grid">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <div class="step-img">
+          <!-- Medical search / discovery -->
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=220&fit=crop&crop=top" alt="Browse and discover KOLs">
+        </div>
+        <span class="step-label">Step 01 — Explore</span>
+        <h3>Browse &amp; Discover</h3>
+        <p>Browse verified KOLs by specialty, region, or therapy focus using our advanced discovery engine.</p>
+      </div>
+      <div class="step reveal d1">
+        <span class="step-num">02</span>
+        <div class="step-img">
+          <!-- Analytics / data comparison -->
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=220&fit=crop" alt="Compare and evaluate profiles">
+        </div>
+        <span class="step-label">Step 02 — Compare</span>
+        <h3>Evaluate &amp; Match</h3>
+        <p>Evaluate profiles by citation impact, publications, or event history to find the perfect match.</p>
+      </div>
+      <div class="step reveal d2">
+        <span class="step-num">03</span>
+        <div class="step-img">
+          <!-- Handshake / collaboration meeting -->
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=220&fit=crop" alt="Engage and collaborate">
+        </div>
+        <span class="step-label">Step 03 — Engage</span>
+        <h3>Connect &amp; Collaborate</h3>
+        <p>Submit collaboration requests for speaker programs, advisory boards, or strategic projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INSIGHTS
+============================================================ -->
+<section class="s-light" id="insights">
+  <div class="container">
+    <div class="insights-header reveal">
+      <div>
+        <span class="eyebrow eyebrow-dark">Knowledge Hub</span>
+        <h2>Insights that Inspire.<br>Perspectives that Lead.</h2>
+        <p>Read expert opinions, digital trends, and pharma engagement insights from global thought leaders.</p>
+      </div>
+      <a href="#" class="link-cta" style="color:var(--navy);flex-shrink:0;align-self:flex-end">View All Insights <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card reveal">
+        <div class="insight-img">
+          <!-- Oncology / precision medicine -->
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=240&fit=crop" alt="Oncology precision medicine">
+          <div class="insight-img-overlay"></div>
+        </div>
+        <div class="insight-body">
+          <span class="insight-tag t-ind">Industry Insights</span>
+          <h3>The Future of Oncology: Precision Medicine and KOL Engagement</h3>
+          <p>Exploring perspectives from IT and business leaders on the evolving landscape of cancer care.</p>
+          <div class="insight-footer">
+            <div class="insight-author-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=64&h=64&fit=crop&crop=face" alt="Author"></div>
+            <div><div class="insight-author-name">Dr. Elena Rodriguez</div><div class="insight-author-role">Chief of Oncology</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card reveal d1">
+        <div class="insight-img">
+          <!-- Global collaboration / compliance -->
+          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&h=240&fit=crop" alt="Global medical collaboration">
+          <div class="insight-img-overlay"></div>
+        </div>
+        <div class="insight-body">
+          <span class="insight-tag t-exp">Expert Voices</span>
+          <h3>Navigating Compliance in Global Medical Collaboration</h3>
+          <p>A comprehensive guide to maintaining transparency and trust in cross-border partnerships.</p>
+          <div class="insight-footer">
+            <div class="insight-author-img"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=64&h=64&fit=crop&crop=face" alt="Author"></div>
+            <div><div class="insight-author-name">Dr. Marcus Thorne</div><div class="insight-author-role">Cardiology</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card reveal d2">
+        <div class="insight-img">
+          <!-- Rare disease research / biotech -->
+          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=240&fit=crop" alt="Rare disease research">
+          <div class="insight-img-overlay"></div>
+        </div>
+        <div class="insight-body">
+          <span class="insight-tag t-case">Case Highlights</span>
+          <h3>Accelerating Rare Disease Research Through Digital Networks</h3>
+          <p>How centralized data access empowered a biotech team to discover niche specialists in record time.</p>
+          <div class="insight-footer">
+            <div class="insight-author-img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=64&h=64&fit=crop&crop=face" alt="Author"></div>
+            <div><div class="insight-author-name">Dr. Sarah Chen</div><div class="insight-author-role">Immunology</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED EXPERT
+============================================================ -->
+<section class="s-dark featured-outer">
+  <div class="featured-bg-img">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1400&q=80&fit=crop" alt="">
+    <div style="position:absolute;inset:0;background:var(--navy);opacity:0.94"></div>
+  </div>
+  <div class="container">
+    <div class="featured-grid">
+      <div class="featured-photo reveal left">
+        <!-- Female oncologist / senior doctor portrait -->
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=85&fit=crop&crop=top" alt="Dr. Elena Rodriguez">
+        <div class="featured-photo-overlay"></div>
+        <div class="featured-photo-badge">Featured Expert</div>
+      </div>
+      <div class="reveal right d2">
+        <span class="eyebrow">Featured Expert</span>
+        <h2>Dr. Elena<br>Rodriguez</h2>
+        <span class="featured-title">Chief of Oncology, Global Health Institute</span>
+        <blockquote class="featured-quote">"KOLverse has transformed how we share breakthroughs with the industry. The platform's commitment to data transparency ensures that scientific dialogue remains credible and impactful."</blockquote>
+        <p class="featured-bio">Dr. Rodriguez is a senior clinical investigator with two decades of experience in developing successful initiatives in the immunotherapy space. She is adept at building out strategic frameworks for global medical affairs and scaling research operations.</p>
+        <div class="featured-actions">
+          <a href="#" class="btn btn-blush">View Full Profile ↗</a>
+          <a href="#" class="soc-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" class="soc-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+============================================================ -->
+<div class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-glow"></div>
+      <h2>Ready to Collaborate?</h2>
+      <p>Get full access to verified profiles, event data, and engagement tools designed for credible, compliant collaboration.</p>
+      <div class="cta-btns">
+        <a href="#" class="btn btn-blush">Register for Free Access</a>
+        <a href="#" class="btn btn-outline-white">Request a Demo</a>
+      </div>
+      <span class="cta-micro">Join the Global KOLverse Community Today</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="nav-logo-box">K</div>
+          <span class="nav-logo-text">KOLverse</span>
+        </div>
+        <p>KOLverse — Where Knowledge Meets Collaboration. We bridge the gap between industry and medical expertise.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" class="soc-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" class="soc-btn"><svg width="15" height="11" viewBox="0 0 24 17" fill="currentColor"><path d="M23.495 2.205a3.02 3.02 0 0 0-2.122-2.136C19.505 0 12 0 12 0S4.495 0 2.627.069A3.02 3.02 0 0 0 .505 2.205 31.24 31.24 0 0 0 0 8.28a31.24 31.24 0 0 0 .505 6.075 3.02 3.02 0 0 0 2.122 2.136C4.495 17 12 17 12 17s7.505 0 9.373-.569a3.02 3.02 0 0 0 2.122-2.136A31.24 31.24 0 0 0 24 8.28a31.24 31.24 0 0 0-.505-6.075zM9.545 12.023V4.537l6.272 3.743-6.272 3.743z"/></svg></a>
+          <a href="#" class="soc-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For Pharma</h4>
+        <ul>
+          <li><a href="#">Expert Discovery</a></li>
+          <li><a href="#">Engagement Tools</a></li>
+          <li><a href="#">Compliance</a></li>
+          <li><a href="#">Case Studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For KOLs</h4>
+        <ul>
+          <li><a href="#">Join the Network</a></li>
+          <li><a href="#">Profile Management</a></li>
+          <li><a href="#">Expert Voices</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 KOLverse / OneAlphaMed &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Use</a></span>
+      <a class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top ↑</a>
+    </div>
+  </div>
+  <div class="footer-disclaimer">KOLverse facilitates expert discovery and engagement. It does not promote or endorse specific products.</div>
+</footer>
+
+<script>
+/* SCROLL REVEAL */
+const revEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+revEls.forEach(el => revObs.observe(el));
+setTimeout(() => {
+  revEls.forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); });
+}, 80);
+
+/* STICKY NAV SHADOW */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+/* COUNT-UP */
+function countUp(el, target, suffix) {
+  let start = null;
+  const dur = 1800;
+  const step = (ts) => {
+    if(!start) start = ts;
+    const prog = Math.min((ts - start)/dur, 1);
+    const eased = 1 - Math.pow(1 - prog, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if(prog < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const statNums = document.querySelectorAll('.stat-num[data-target]');
+const numObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      countUp(el, +el.dataset.target, el.dataset.suffix||'');
+      numObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+statNums.forEach(el => numObs.observe(el));
+
+/* KOL DRAG SCROLL */
+const ks = document.getElementById('kol-scroll');
+let isDown=false, startX, scrollLeft;
+ks.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-ks.offsetLeft; scrollLeft=ks.scrollLeft; });
+ks.addEventListener('mouseleave', ()=>isDown=false);
+ks.addEventListener('mouseup', ()=>isDown=false);
+ks.addEventListener('mousemove', e => {
+  if(!isDown) return;
+  e.preventDefault();
+  ks.scrollLeft = scrollLeft - (e.pageX - ks.offsetLeft - startX) * 1.5;
+});
+
+/* TAG PILL TOGGLE */
+document.querySelectorAll('.pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.pill').forEach(q => q.classList.remove('active'));
+    p.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
